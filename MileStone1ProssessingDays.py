@@ -1,25 +1,36 @@
+# ===============================
+# IMPORT PACKAGES
+# ===============================
 import numpy as np
 import pandas as pd
-# Step 1: Create data
+from sklearn.linear_model import LinearRegression
+
+pd.set_option("display.max_columns", None)
+
+# ===============================
+# PART 1: LARGE VISA DATASET
+# ===============================
+print("\n===== PART 1: LARGE VISA DATASET =====\n")
+
 data = {
-    "Application_Date": [
+    "application_date": [
         "2024-01-01", "2024-02-15", "2024-03-10",
         "2024-04-05", "2024-05-12", "2024-06-01",
         "2024-06-18", "2024-07-02", "2024-07-25",
         "2024-08-10"
     ],
-    "Decision_Date": [
+    "decision_date": [
         "2024-02-01", "2024-03-20", "2024-04-05",
         "2024-05-01", "2024-06-20", "2024-06-25",
         "2024-07-28", "2024-08-05", "2024-09-15",
         "2024-10-01"
     ],
-    "Country": [
+    "country": [
         "India", "United States", "United Kingdom",
         "Canada", "Australia", "Germany",
         "India", "France", "Japan", "Brazil"
     ],
-    "Visa_Type": [
+    "visa_type": [
         "Student", "Tourist", "Work",
         "Tourist", "Student", "Work",
         "Work", "Tourist", "Student", "Work"
@@ -27,48 +38,56 @@ data = {
 }
 
 df = pd.DataFrame(data)
-# Step 2: Ensure required columns exist
-required_columns = ["Application_Date", "Decision_Date", "Country", "Visa_Type"]
+print("Original DataFrame:\n", df)
 
-for col in required_columns:
-    if col not in df.columns:
-        df[col] = np.nan
+# ===============================
+# DATE CONVERSION
+# ===============================
+df["application_date"] = pd.to_datetime(df["application_date"])
+df["decision_date"] = pd.to_datetime(df["decision_date"])
 
-# Step 3: Handle missing categorical data
-df["Country"] = df["Country"].fillna("Unknown")
-df["Visa_Type"] = df["Visa_Type"].fillna("Unknown")
+print("\nAfter Date Conversion:\n", df)
 
-# Step 4: Handle dates safely
-
-df["Application_Date"] = pd.to_datetime(df["Application_Date"], errors="coerce")
-df["Decision_Date"] = pd.to_datetime(df["Decision_Date"], errors="coerce")
-
-# Step 5: Calculate processing days safely
-
-df["Processing_Days"] = (
-    df["Decision_Date"] - df["Application_Date"]
+# ===============================
+# PROCESSING DAYS
+# ===============================
+df["processing_days"] = (
+    df["decision_date"] - df["application_date"]
 ).dt.days
 
-df.loc[df["Processing_Days"] < 0, "Processing_Days"] = np.nan
+print("\nAfter Calculating Processing Days:\n", df)
 
+# ===============================
+# ENCODING
+# ===============================
+df_encoded = pd.get_dummies(df, columns=["country", "visa_type"])
 
-# Step 6: Map processing 
+print("\nEncoded DataFrame:\n", df_encoded)
 
-office_map = {
-    "India": "New Delhi",
-    "United States": "Washington DC",
-    "United Kingdom": "London",
-    "Canada": "Ottawa",
-    "Australia": "Canberra",
-    "Germany": "Berlin",
-    "France": "Paris",
-    "Japan": "Tokyo",
-    "Brazil": "Brasilia"
-}
+# ===============================
+# MACHINE LEARNING
+# ===============================
+X = df_encoded.drop(
+    columns=["processing_days", "application_date", "decision_date"]
+)
+y = df_encoded["processing_days"]
 
-df["Processing_Office"] = df["Country"].map(office_map).fillna("Unknown")
+model = LinearRegression()
+model.fit(X, y)
 
-# Step 7: Display
+# ===============================
+# PREDICTION SAMPLE
+# ===============================
+sample_input = pd.DataFrame(
+    np.zeros((1, len(X.columns))),
+    columns=X.columns
+)
 
-pd.set_option("display.max_columns", None)
-print(df)
+# Example: India + Student Visa
+sample_input.loc[0, "country_India"] = 1
+sample_input.loc[0, "visa_type_Student"] = 1
+
+predicted_days = model.predict(sample_input)
+
+print("\nPredicted Processing Time (India + Student):",
+      round(predicted_days[0], 2), "days")
