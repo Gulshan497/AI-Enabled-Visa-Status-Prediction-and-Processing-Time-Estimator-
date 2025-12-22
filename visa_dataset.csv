@@ -1,0 +1,151 @@
+application_date,decision_date,country,visa_type
+2024-09-13,2024-10-12,Canada,Student
+2024-07-20,2024-08-15,France,Tourist
+2024-02-25,2024-05-06,Brazil,Work
+2024-06-25,2024-07-14,United States,Tourist
+2024-04-12,2024-05-11,Italy,Tourist
+2024-02-08,2024-02-28,United Kingdom,Tourist
+2024-03-11,2024-04-13,United Kingdom,Work
+2024-08-09,2024-11-05,Italy,Work
+2024-05-02,2024-06-29,China,Work
+2024-01-09,2024-01-22,Japan,Tourist
+2024-05-16,2024-06-17,United Kingdom,Student
+2024-08-06,2024-09-05,France,Student
+2024-08-08,2024-10-18,Japan,Work
+2024-10-27,2024-12-31,Netherlands,Work
+2024-07-31,2024-09-08,India,Work
+2024-10-22,2024-11-08,China,Tourist
+2024-03-18,2024-04-03,Spain,Tourist
+2024-08-16,2024-10-18,Brazil,Student
+2024-04-02,2024-06-19,Germany,Work
+2024-07-14,2024-08-14,Spain,Tourist
+2024-06-15,2024-07-04,India,Tourist
+2024-06-29,2024-07-24,China,Tourist
+2024-01-02,2024-02-19,Mexico,Work
+2024-06-21,2024-08-24,Australia,Work
+2024-04-28,2024-06-01,Mexico,Student
+2024-04-04,2024-05-23,Japan,Work
+2024-10-27,2024-12-09,France,Work
+2024-10-16,2024-11-22,Italy,Student
+2024-05-03,2024-07-12,Germany,Work
+2024-08-13,2024-09-28,South Korea,Work
+2024-05-20,2024-06-12,Australia,Tourist
+2024-09-17,2024-11-13,Netherlands,Student
+2024-07-23,2024-08-08,Netherlands,Tourist
+2024-10-13,2024-11-15,Italy,Student
+2024-07-09,2024-08-08,India,Student
+2024-07-17,2024-08-10,South Korea,Student
+2024-01-05,2024-03-08,India,Student
+2024-07-18,2024-09-10,Germany,Student
+2024-04-08,2024-05-21,United States,Student
+2024-07-14,2024-09-13,Brazil,Student
+2024-04-18,2024-07-13,Australia,Work
+2024-01-28,2024-03-12,South Korea,Student
+2024-08-27,2024-09-16,South Korea,Student
+2024-06-04,2024-08-24,Brazil,Work
+2024-09-15,2024-10-15,Mexico,Tourist
+2024-01-12,2024-04-11,Italy,Work
+2024-09-19,2024-11-25,Italy,Work
+2024-07-08,2024-10-02,United Kingdom,Work
+2024-03-21,2024-04-14,France,Tourist
+2024-03-14,2024-04-09,France,Tourist
+2024-09-29,2024-10-25,Spain,Tourist
+2024-06-10,2024-06-20,Canada,Tourist
+2024-09-01,2024-09-23,Italy,Tourist
+2024-04-28,2024-06-04,India,Student
+2024-06-12,2024-07-31,Brazil,Work
+2024-01-15,2024-04-14,India,Work
+2024-08-27,2024-10-24,South Korea,Work
+2024-06-08,2024-07-23,Brazil,Student
+2024-08-26,2024-09-24,Mexico,Tourist
+2024-09-18,2024-11-26,Brazil,Work
+2024-04-09,2024-06-04,South Korea,Work
+2024-10-08,2024-12-01,Brazil,Student
+2024-07-02,2024-08-25,United States,Student
+2024-04-02,2024-05-03,Mexico,Student
+2024-10-04,2024-10-20,South Korea,Tourist
+2024-08-22,2024-10-25,Brazil,Student
+2024-05-11,2024-06-26,France,Work
+2024-02-03,2024-03-30,South Korea,Work
+2024-09-19,2024-10-08,Netherlands,Student
+2024-04-26,2024-07-06,Germany,Work
+2024-04-08,2024-04-23,Italy,Tourist
+2024-06-19,2024-07-23,India,Student
+2024-09-26,2024-10-16,United States,Tourist
+2024-05-14,2024-07-02,Australia,Student
+2024-08-17,2024-09-29,China,Work
+2024-07-12,2024-09-03,Japan,Work
+2024-06-29,2024-08-08,Germany,Student
+2024-09-09,2024-11-22,Australia,Work
+2024-01-10,2024-02-22,United Kingdom,Student
+2024-06-05,2024-08-23,Germany,Work
+2024-10-04,2024-10-21,Italy,Tourist
+2024-02-20,2024-03-18,Mexico,Tourist
+2024-06-10,2024-08-15,United Kingdom,Work
+2024-03-26,2024-04-05,France,Tourist
+2024-04-16,2024-05-20,Brazil,Student
+2024-10-10,2024-11-05,United Kingdom,Tourist
+2024-05-26,2024-06-24,Mexico,Tourist
+2024-07-27,2024-08-15,Netherlands,Student
+2024-04-22,2024-05-12,France,Tourist
+2024-07-12,2024-08-16,Germany,Student
+2024-08-26,2024-09-22,Japan,Tourist
+2024-03-17,2024-05-10,Spain,Student
+2024-07-05,2024-07-20,Mexico,Tourist
+2024-09-27,2024-10-18,Canada,Tourist
+2024-06-07,2024-07-21,Mexico,Work
+2024-10-10,2024-11-12,Japan,Student
+2024-08-26,2024-11-27,India,Work
+2024-02-01,2024-03-29,Japan,Student
+2024-01-31,2024-03-06,France,Student
+2024-03-30,2024-06-07,United States,Work
+2024-01-29,2024-02-05,United States,Tourist
+2024-07-01,2024-07-30,Australia,Student
+2024-07-02,2024-08-24,China,Student
+2024-04-25,2024-05-11,Germany,Tourist
+2024-02-27,2024-04-12,South Korea,Work
+2024-06-01,2024-08-12,Mexico,Work
+2024-10-08,2024-10-20,United States,Tourist
+2024-09-12,2024-10-16,China,Tourist
+2024-02-16,2024-03-03,France,Tourist
+2024-02-19,2024-04-08,Netherlands,Work
+2024-04-03,2024-05-27,Spain,Student
+2024-09-29,2024-11-26,Spain,Student
+2024-10-26,2024-11-11,India,Tourist
+2024-04-04,2024-06-19,Brazil,Work
+2024-07-18,2024-08-29,Australia,Student
+2024-09-19,2024-10-19,Japan,Tourist
+2024-10-03,2024-11-28,France,Work
+2024-06-16,2024-09-09,United Kingdom,Work
+2024-08-30,2024-10-22,China,Student
+2024-09-01,2024-09-17,India,Tourist
+2024-08-18,2024-09-27,Japan,Student
+2024-06-10,2024-07-09,Netherlands,Student
+2024-07-11,2024-07-26,Netherlands,Tourist
+2024-05-13,2024-06-02,Germany,Tourist
+2024-05-17,2024-07-09,Mexico,Student
+2024-01-23,2024-02-07,United States,Tourist
+2024-03-19,2024-05-11,Italy,Work
+2024-05-23,2024-06-24,Netherlands,Student
+2024-03-29,2024-04-10,Netherlands,Tourist
+2024-01-29,2024-03-03,Brazil,Tourist
+2024-03-03,2024-05-12,Australia,Work
+2024-06-26,2024-07-23,United Kingdom,Tourist
+2024-10-14,2024-11-11,Brazil,Student
+2024-02-01,2024-04-28,Brazil,Work
+2024-08-02,2024-08-11,Netherlands,Tourist
+2024-10-14,2024-11-14,Italy,Tourist
+2024-07-26,2024-09-25,Brazil,Work
+2024-05-23,2024-06-19,Australia,Tourist
+2024-07-23,2024-09-09,Australia,Student
+2024-03-11,2024-05-30,Netherlands,Work
+2024-05-07,2024-06-01,Germany,Tourist
+2024-02-25,2024-03-28,China,Tourist
+2024-04-17,2024-05-22,Germany,Work
+2024-01-19,2024-02-15,Spain,Tourist
+2024-05-17,2024-06-11,Spain,Student
+2024-07-03,2024-08-07,India,Student
+2024-02-02,2024-02-29,Mexico,Tourist
+2024-02-07,2024-03-18,Italy,Work
+2024-08-25,2024-09-28,Canada,Work
+2024-06-15,2024-08-07,India,Student

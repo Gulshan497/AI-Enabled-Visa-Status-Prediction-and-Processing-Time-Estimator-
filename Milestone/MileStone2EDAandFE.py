@@ -1,4 +1,5 @@
 # IMPORT PACKAGES
+import os
 import numpy as np
 import pandas as pd
 from sklearn.linear_model import LinearRegression
@@ -7,34 +8,10 @@ import seaborn as sns
 
 pd.set_option("display.max_columns", None)
 
-# LARGE VISA DATASET (with potential missing values)
-data = {
-    "application_date": [
-        "2024-01-01", "2024-02-15", None,
-        "2024-04-05", "2024-05-12", "2024-06-01",
-        "2024-06-18", "2024-07-02", "2024-07-25",
-        "2024-08-10"
-    ],
-    "decision_date": [
-        "2024-02-01", "2024-03-20", "2024-04-05",
-        None, "2024-06-20", "2024-06-25",
-        "2024-07-28", "2024-08-05", None,
-        "2024-10-01"
-    ],
-    "country": [
-        "India", "United States", "United Kingdom",
-        "Canada", "Australia", "Germany",
-        None, "France", "Japan", "Brazil"
-    ],
-    "visa_type": [
-        "Student", "Tourist", "Work",
-        "Tourist", "Student", "Work",
-        "Work", "Tourist", None, "Work"
-    ]
-}
-
-df = pd.DataFrame(data)
-print("Original DataFrame with potential missing values:\n", df)
+# LOAD FULL VISA DATASET FROM CSV (visa_dataset.csv created in Milestone 1)
+csv_path = os.path.join(os.path.dirname(__file__), "..", "visa_dataset.csv")
+df = pd.read_csv(csv_path)
+print("Original DataFrame loaded from visa_dataset.csv:\n", df.head())
 
 # HANDLE MISSING VALUES
 # Fill missing dates with mode
