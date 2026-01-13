@@ -9,6 +9,8 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.model_selection import GridSearchCV
 import matplotlib.pyplot as plt
 import seaborn as sns
+import joblib
+import pickle
 
 pd.set_option("display.max_columns", None)
 
@@ -245,6 +247,41 @@ print(f"RMSE: {rmse_tuned:.2f}")
 print(f"R² Score: {r2_tuned:.4f}")
 
 # ============================================
+# SAVE MODEL FOR DEPLOYMENT
+# ============================================
+print("\n" + "="*50)
+print("SAVING MODEL FOR DEPLOYMENT")
+print("="*50)
+
+# Determine the best tuned model
+if best_model_name == "Random Forest":
+    final_model = best_rf_model
+elif best_model_name == "Gradient Boosting":
+    final_model = best_gb_model
+else:
+    final_model = lr_model
+
+# Save the model
+model_path = os.path.join(os.path.dirname(__file__), "..", "visa_processing_model.pkl")
+joblib.dump(final_model, model_path)
+print(f"Model saved to: {model_path}")
+
+# Save preprocessing information (feature names, office map, etc.)
+preprocessing_info = {
+    'feature_names': list(X.columns),
+    'office_map': office_map,
+    'model_type': best_model_name,
+    'mean_processing_days': df['processing_days'].mean(),
+    'country_avg': country_avg.to_dict(),
+    'visa_avg': visa_avg.to_dict()
+}
+
+preprocessing_path = os.path.join(os.path.dirname(__file__), "..", "preprocessing_info.pkl")
+with open(preprocessing_path, 'wb') as f:
+    pickle.dump(preprocessing_info, f)
+print(f"Preprocessing info saved to: {preprocessing_path}")
+
+# ============================================
 # VISUALIZATIONS
 # ============================================
 print("\n" + "="*50)
@@ -294,4 +331,3 @@ plt.show()
 print("\n" + "="*50)
 print("MILESTONE 3 COMPLETED!")
 print("="*50)
-
