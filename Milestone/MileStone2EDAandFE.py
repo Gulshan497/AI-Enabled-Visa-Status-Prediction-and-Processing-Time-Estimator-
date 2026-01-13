@@ -88,15 +88,25 @@ model.fit(X, y)
 
 
 # PREDICTION SAMPLE
-sample_input = pd.DataFrame(np.zeros((1, len(X.columns))), columns=X.columns)
+# Build a representative sample input for prediction using feature means for numeric
+# features and explicit one-hot settings for categorical features. This avoids
+# unrealistic zero-valued numeric features which can cause large negative
+# extrapolations from a linear model.
+sample_input = pd.DataFrame([X.mean()])
+# Zero out all one-hot categorical columns before setting desired categories
+one_hot_cols = [c for c in X.columns if c.startswith("country_") or c.startswith("visa_type_") or c.startswith("season_") or c.startswith("processing_office_")]
+if one_hot_cols:
+    sample_input[one_hot_cols] = 0
+
 # Example: India + Student + Peak + New Delhi office
-sample_input.loc[0, "country_India"] = 1
-sample_input.loc[0, "visa_type_Student"] = 1
-sample_input.loc[0, "season_Peak"] = 1
-sample_input.loc[0, "processing_office_New Delhi"] = 1
+for col in ["country_India", "visa_type_Student", "season_Peak", "processing_office_New Delhi"]:
+    if col in sample_input.columns:
+        sample_input.loc[0, col] = 1
 
 predicted_days = model.predict(sample_input)
-print("\nPredicted Processing Time (India + Student + Peak + New Delhi):", round(predicted_days[0], 2), "days")
+# Clip negative predictions to zero (processing days cannot be negative)
+pred_val = max(predicted_days[0], 0)
+print("\nPredicted Processing Time (India + Student + Peak + New Delhi):", round(pred_val, 2), "days")
 
 # VISUALIZATIONS
 # Filter df to exclude NaN processing_days for visualizations
