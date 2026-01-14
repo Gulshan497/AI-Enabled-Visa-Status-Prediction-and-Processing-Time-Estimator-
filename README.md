@@ -1,5 +1,8 @@
 AI Enabled Visa Status Prediction and Processing Time Estimator
 
+## 🚀 Live Demo
+**[Visit VisaAI](https://ai-visa-prediction-production.up.railway.app)** - Deployed on Railway
+
 This project leverages Machine Learning and data-driven analytics to provide intelligent insights into visa application outcomes. By analyzing historical visa datasets across multiple countries, 
 the system predicts the likelihood of visa approval, estimates processing durations, and identifies key factors influencing decision timelines.
 
