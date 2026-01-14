@@ -1,10 +1,12 @@
 import os
 
 # Disable OpenMP threading to avoid libgomp.so.1 error on Railway
+# Set these BEFORE importing numpy/sklearn
 os.environ['OPENBLAS_NUM_THREADS'] = '1'
 os.environ['OMP_NUM_THREADS'] = '1'
 os.environ['MKL_NUM_THREADS'] = '1'
 os.environ['NUMEXPR_NUM_THREADS'] = '1'
+os.environ['SKLEARN_THREADING_LAYER'] = 'sequential'
 
 import pickle
 import joblib
@@ -12,6 +14,10 @@ from datetime import datetime
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
+import numpy as np
+
+# Force single-threaded behavior
+np.seterr(all='ignore')
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "visa_processing_model.pkl")
