@@ -97,6 +97,10 @@ INDEX_HTML = """
 APP = Flask(__name__, template_folder=os.path.join(os.path.dirname(__file__), '..', 'templates'), static_folder=os.path.join(os.path.dirname(__file__), '..', 'static'))
 
 if HAS_FLASK:
+    @APP.route("/health", methods=["GET"])
+    def health():
+        return {"status": "ok", "message": "VisaAI API is running"}, 200
+
     @APP.route("/", methods=["GET"])
     def index():
         try:
@@ -108,18 +112,19 @@ if HAS_FLASK:
             return f"<h1>Error loading page: {e}</h1>", 500
 
 
-    @APP.route("/predict", methods=["POST"])
+    @APP.route("/predict", methods=["POST", "GET"])
     def predict_route():
-        country = request.form.get("country", "Unknown")
-        visa_type = request.form.get("visa_type", "Unknown")
-        application_date = request.form.get("application_date", datetime.today().strftime("%Y-%m-%d"))
-        processing_office = request.form.get("processing_office", None)
         try:
+            country = request.form.get("country") or request.args.get("country", "Unknown")
+            visa_type = request.form.get("visa_type") or request.args.get("visa_type", "Unknown")
+            application_date = request.form.get("application_date") or request.args.get("application_date", datetime.today().strftime("%Y-%m-%d"))
+            processing_office = request.form.get("processing_office") or request.args.get("processing_office", None)
+            
             model, prep = load_artifacts()
             days = predict(model, prep, country, visa_type, application_date, processing_office)
         except Exception as e:
-            return f"Error during prediction: {e}", 500
-        # Render a small inline result to keep server simple
+            return f"<html><body style='font-family:Inter, Poppins, sans-serif;background:#07104a;color:#eaf0ff;padding:20px'><h2>Error during prediction:</h2><p>{str(e)}</p><p><a href='/'>Back</a></p></body></html>", 500
+        
         return render_template_string(f"<html><body style='font-family:Inter, Poppins, sans-serif;background:#07104a;color:#eaf0ff;display:flex;align-items:center;justify-content:center;height:100vh'><div style='background:rgba(255,255,255,0.02);padding:24px;border-radius:12px;box-shadow:0 20px 40px rgba(0,0,0,0.6)'><h2>Estimated processing days: {days}</h2><p><a href='/'>Back</a></p></div></body></html>")
 
 
