@@ -1,12 +1,17 @@
 import os
+import sys
 
-# Disable OpenMP threading to avoid libgomp.so.1 error on Railway
-# Set these BEFORE importing numpy/sklearn
+# ===== CRITICAL: Disable OpenMP threading BEFORE any imports =====
 os.environ['OPENBLAS_NUM_THREADS'] = '1'
 os.environ['OMP_NUM_THREADS'] = '1'
 os.environ['MKL_NUM_THREADS'] = '1'
 os.environ['NUMEXPR_NUM_THREADS'] = '1'
 os.environ['SKLEARN_THREADING_LAYER'] = 'sequential'
+os.environ['OPENBLAS'] = 'USE_OPENMP=0'
+
+# Ensure libgomp is not used
+if 'LD_PRELOAD' not in os.environ:
+    os.environ['LD_PRELOAD'] = '/usr/lib/x86_64-linux-gnu/libgomp.so.1'
 
 import pickle
 import joblib
@@ -15,8 +20,12 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
 import numpy as np
+import warnings
 
-# Force single-threaded behavior
+# Suppress warnings
+warnings.filterwarnings('ignore')
+
+# Set numpy to single-threaded
 np.seterr(all='ignore')
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
