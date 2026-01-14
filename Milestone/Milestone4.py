@@ -93,13 +93,19 @@ INDEX_HTML = """
 </form>
 """
 
+# Create Flask app (required for gunicorn)
+APP = Flask(__name__, template_folder=os.path.join(os.path.dirname(__file__), '..', 'templates'), static_folder=os.path.join(os.path.dirname(__file__), '..', 'static'))
 
 if HAS_FLASK:
-    APP = Flask(__name__, template_folder=os.path.join(os.path.dirname(__file__), '..', 'templates'), static_folder=os.path.join(os.path.dirname(__file__), '..', 'static'))
-
     @APP.route("/", methods=["GET"])
     def index():
-        return APP.send_static_file('../templates/index.html') if False else render_template_string(open(os.path.join(os.path.dirname(__file__), '..', 'templates', 'index.html'), 'r', encoding='utf-8').read())
+        try:
+            html_path = os.path.join(os.path.dirname(__file__), '..', 'templates', 'index.html')
+            with open(html_path, 'r', encoding='utf-8') as f:
+                return render_template_string(f.read())
+
+        except Exception as e:
+            return f"<h1>Error loading page: {e}</h1>", 500
 
 
     @APP.route("/predict", methods=["POST"])
@@ -134,13 +140,20 @@ def run_tests():
 if __name__ == "__main__":
     import sys
     import os
+    import traceback
     mode = sys.argv[1] if len(sys.argv) > 1 else "test"
     if mode == "runserver":
         if not HAS_FLASK:
             print("Flask is not available in this environment. Install Flask to run the server.")
             sys.exit(1)
-        # Bind to 0.0.0.0 on Heroku port (or localhost for development)
-        port = int(os.environ.get("PORT", 5000))
-        APP.run(host="0.0.0.0", port=port, debug=False)
+        try:
+            # Bind to 0.0.0.0 on Heroku port (or localhost for development)
+            port = int(os.environ.get("PORT", 5000))
+            print(f"Starting Flask server on port {port}...")
+            APP.run(host="0.0.0.0", port=port, debug=False)
+        except Exception as e:
+            print(f"Error starting Flask server: {e}")
+            traceback.print_exc()
+            sys.exit(1)
     else:
         run_tests()
