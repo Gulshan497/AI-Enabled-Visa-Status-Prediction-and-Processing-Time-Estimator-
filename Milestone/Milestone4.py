@@ -133,12 +133,14 @@ def run_tests():
 
 if __name__ == "__main__":
     import sys
+    import os
     mode = sys.argv[1] if len(sys.argv) > 1 else "test"
     if mode == "runserver":
         if not HAS_FLASK:
             print("Flask is not available in this environment. Install Flask to run the server.")
             sys.exit(1)
-        # Bind to localhost on port 5000 for local-only access
-        APP.run(host="127.0.0.1", port=5000, debug=True)
+        # Bind to 0.0.0.0 on Heroku port (or localhost for development)
+        port = int(os.environ.get("PORT", 5000))
+        APP.run(host="0.0.0.0", port=port, debug=False)
     else:
         run_tests()
