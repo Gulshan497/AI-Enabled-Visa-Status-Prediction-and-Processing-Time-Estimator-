@@ -3,7 +3,7 @@ AI Enabled Visa Status Prediction and Processing Time Estimator
 This project leverages Machine Learning and data-driven analytics to provide intelligent insights into visa application outcomes. By analyzing historical visa datasets across multiple countries, 
 the system predicts the likelihood of visa approval, estimates processing durations, and identifies key factors influencing decision timelines.
 
-To run the site, make sure to run the backend first to then procedd to clicking on the frontend to make the prediction functional.
+**To run the site, make sure to run the backend first to then procedd to clicking on the frontend to make the prediction functional.**
 
 ## 🚀 Live Deployment
 
